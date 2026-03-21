@@ -30,14 +30,19 @@ namespace DomApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Produtos));
             pnlNav = new Panel();
+            btnLogout = new System.Windows.Forms.Button();
             pnlOpcoes = new Panel();
+            btnPnlDeletar = new System.Windows.Forms.Button();
             btnBuscarProdutos = new System.Windows.Forms.Button();
             btnCadastrarProdutos = new System.Windows.Forms.Button();
             btnVisualizarPdt = new System.Windows.Forms.Button();
             label1 = new Label();
             lblLogin = new Label();
             pnlCadProduto = new Panel();
+            panel4 = new Panel();
+            label18 = new Label();
             cmbTipo = new System.Windows.Forms.ComboBox();
             btnCadastrar = new System.Windows.Forms.Button();
             label5 = new Label();
@@ -58,6 +63,7 @@ namespace DomApp
             panel1 = new Panel();
             dgvBuscaDeProdutos = new DataGridView();
             panel2 = new Panel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             cmbBuscaTipo = new System.Windows.Forms.ComboBox();
             label9 = new Label();
             txtBuscaNome = new System.Windows.Forms.TextBox();
@@ -69,9 +75,28 @@ namespace DomApp
             txtBuscaQtdMenorQue = new System.Windows.Forms.TextBox();
             label10 = new Label();
             btnBuscar = new System.Windows.Forms.Button();
+            pnlDeletar = new Panel();
+            pnlConfirmarId = new Panel();
+            btnSairConfirmarId = new System.Windows.Forms.Button();
+            label16 = new Label();
+            btnConfirmar = new System.Windows.Forms.Button();
+            txtConfirmarId = new System.Windows.Forms.TextBox();
+            pnlConfirmarNome = new Panel();
+            btnSairConfirmarNome = new System.Windows.Forms.Button();
+            label17 = new Label();
+            btnConfirmarNome = new System.Windows.Forms.Button();
+            txtConfirmarNome = new System.Windows.Forms.TextBox();
+            btnDeletar = new System.Windows.Forms.Button();
+            label15 = new Label();
+            label14 = new Label();
+            txtDeletarNome = new System.Windows.Forms.TextBox();
+            txtDeletarId = new System.Windows.Forms.TextBox();
+            panel3 = new Panel();
+            label8 = new Label();
             pnlNav.SuspendLayout();
             pnlOpcoes.SuspendLayout();
             pnlCadProduto.SuspendLayout();
+            panel4.SuspendLayout();
             pnlVisualizarPdt.SuspendLayout();
             pnlDGVVisualizarPdt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListaProdutos).BeginInit();
@@ -80,11 +105,16 @@ namespace DomApp
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBuscaDeProdutos).BeginInit();
             panel2.SuspendLayout();
+            pnlDeletar.SuspendLayout();
+            pnlConfirmarId.SuspendLayout();
+            pnlConfirmarNome.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // pnlNav
             // 
-            pnlNav.BackColor = Color.Lime;
+            pnlNav.BackColor = Color.OliveDrab;
+            pnlNav.Controls.Add(btnLogout);
             pnlNav.Controls.Add(pnlOpcoes);
             pnlNav.Controls.Add(label1);
             pnlNav.Controls.Add(lblLogin);
@@ -92,19 +122,44 @@ namespace DomApp
             pnlNav.ForeColor = Color.White;
             pnlNav.Location = new Point(0, 0);
             pnlNav.Name = "pnlNav";
-            pnlNav.Size = new Size(1519, 100);
+            pnlNav.Size = new Size(1183, 100);
             pnlNav.TabIndex = 0;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Image = (Image)resources.GetObject("btnLogout.Image");
+            btnLogout.Location = new Point(1090, 12);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(58, 47);
+            btnLogout.TabIndex = 4;
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // pnlOpcoes
             // 
             pnlOpcoes.BackColor = Color.Transparent;
+            pnlOpcoes.Controls.Add(btnPnlDeletar);
             pnlOpcoes.Controls.Add(btnBuscarProdutos);
             pnlOpcoes.Controls.Add(btnCadastrarProdutos);
             pnlOpcoes.Controls.Add(btnVisualizarPdt);
             pnlOpcoes.Location = new Point(19, 12);
             pnlOpcoes.Name = "pnlOpcoes";
-            pnlOpcoes.Size = new Size(284, 77);
+            pnlOpcoes.Size = new Size(389, 77);
             pnlOpcoes.TabIndex = 3;
+            // 
+            // btnPnlDeletar
+            // 
+            btnPnlDeletar.ForeColor = Color.Black;
+            btnPnlDeletar.Location = new Point(296, 17);
+            btnPnlDeletar.Name = "btnPnlDeletar";
+            btnPnlDeletar.Size = new Size(76, 41);
+            btnPnlDeletar.TabIndex = 3;
+            btnPnlDeletar.Text = "Deletar Produtos";
+            btnPnlDeletar.UseVisualStyleBackColor = true;
+            btnPnlDeletar.Click += btnPnlDeletar_Click;
             // 
             // btnBuscarProdutos
             // 
@@ -144,11 +199,11 @@ namespace DomApp
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(617, 9);
+            label1.Location = new Point(403, 9);
             label1.Name = "label1";
-            label1.Size = new Size(296, 37);
+            label1.Size = new Size(377, 37);
             label1.TabIndex = 1;
-            label1.Text = "Cadastro de Produtos";
+            label1.Text = "Gerenciamento de Produtos";
             // 
             // lblLogin
             // 
@@ -156,7 +211,7 @@ namespace DomApp
             lblLogin.AutoSize = true;
             lblLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLogin.ForeColor = Color.Black;
-            lblLogin.Location = new Point(714, 55);
+            lblLogin.Location = new Point(502, 49);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(46, 21);
             lblLogin.TabIndex = 1;
@@ -165,6 +220,7 @@ namespace DomApp
             // pnlCadProduto
             // 
             pnlCadProduto.BackColor = SystemColors.ControlDark;
+            pnlCadProduto.Controls.Add(panel4);
             pnlCadProduto.Controls.Add(cmbTipo);
             pnlCadProduto.Controls.Add(btnCadastrar);
             pnlCadProduto.Controls.Add(label5);
@@ -179,26 +235,49 @@ namespace DomApp
             pnlCadProduto.Dock = DockStyle.Fill;
             pnlCadProduto.Location = new Point(0, 100);
             pnlCadProduto.Name = "pnlCadProduto";
-            pnlCadProduto.Size = new Size(1519, 631);
+            pnlCadProduto.Size = new Size(1183, 507);
             pnlCadProduto.TabIndex = 1;
             pnlCadProduto.Visible = false;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.Goldenrod;
+            panel4.Controls.Add(label18);
+            panel4.Dock = DockStyle.Top;
+            panel4.Location = new Point(0, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1183, 100);
+            panel4.TabIndex = 5;
+            // 
+            // label18
+            // 
+            label18.Anchor = AnchorStyles.Top;
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.Location = new Point(438, 25);
+            label18.Name = "label18";
+            label18.Size = new Size(377, 47);
+            label18.TabIndex = 1;
+            label18.Text = "Cadastro de Produtos";
             // 
             // cmbTipo
             // 
             cmbTipo.AutoCompleteCustomSource.AddRange(new string[] { "Cereal", "Laticíneos", "Test", "Test1" });
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTipo.Font = new Font("Segoe UI", 11.25F);
             cmbTipo.FormattingEnabled = true;
             cmbTipo.Items.AddRange(new object[] { "Cereal", "Laticínios", "Test", "Test1" });
-            cmbTipo.Location = new Point(556, 66);
+            cmbTipo.Location = new Point(374, 316);
             cmbTipo.Name = "cmbTipo";
-            cmbTipo.Size = new Size(121, 23);
+            cmbTipo.Size = new Size(150, 28);
             cmbTipo.TabIndex = 4;
             // 
             // btnCadastrar
             // 
-            btnCadastrar.Location = new Point(502, 202);
+            btnCadastrar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCadastrar.Location = new Point(652, 314);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(75, 23);
+            btnCadastrar.Size = new Size(104, 28);
             btnCadastrar.TabIndex = 3;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = true;
@@ -207,74 +286,89 @@ namespace DomApp
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(324, 134);
+            label5.Font = new Font("Segoe UI", 11F);
+            label5.Location = new Point(374, 210);
             label5.Name = "label5";
-            label5.Size = new Size(134, 15);
+            label5.Size = new Size(169, 20);
             label5.TabIndex = 3;
             label5.Text = "Quantidade em estoque";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(556, 36);
+            label6.Font = new Font("Segoe UI", 11F);
+            label6.Location = new Point(374, 284);
             label6.Name = "label6";
-            label6.Size = new Size(93, 15);
+            label6.Size = new Size(117, 20);
             label6.TabIndex = 3;
             label6.Text = "Tipo de Produto";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(324, 36);
+            label4.Font = new Font("Segoe UI", 11F);
+            label4.Location = new Point(635, 210);
             label4.Name = "label4";
-            label4.Size = new Size(121, 15);
+            label4.Size = new Size(156, 20);
             label4.TabIndex = 3;
             label4.Text = "Valor de Venda Médio";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(82, 119);
+            label3.Font = new Font("Segoe UI", 11F);
+            label3.Location = new Point(635, 122);
             label3.Name = "label3";
-            label3.Size = new Size(132, 15);
+            label3.Size = new Size(168, 20);
             label3.TabIndex = 3;
             label3.Text = "Valor de Compra Médio";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(85, 36);
+            label2.Font = new Font("Segoe UI", 11F);
+            label2.Location = new Point(374, 122);
             label2.Name = "label2";
-            label2.Size = new Size(103, 15);
+            label2.Size = new Size(129, 20);
             label2.TabIndex = 3;
             label2.Text = "Nome do Produto";
             // 
             // txtQuantidade
             // 
-            txtQuantidade.Location = new Point(324, 170);
+            txtQuantidade.Font = new Font("Segoe UI", 11.25F);
+            txtQuantidade.Location = new Point(374, 239);
             txtQuantidade.Name = "txtQuantidade";
-            txtQuantidade.Size = new Size(100, 23);
+            txtQuantidade.PlaceholderText = "Ex.: 35";
+            txtQuantidade.Size = new Size(150, 27);
             txtQuantidade.TabIndex = 0;
             // 
             // txtValorVendaMedio
             // 
-            txtValorVendaMedio.Location = new Point(324, 66);
+            txtValorVendaMedio.Font = new Font("Segoe UI", 11.25F);
+            txtValorVendaMedio.Location = new Point(635, 239);
             txtValorVendaMedio.Name = "txtValorVendaMedio";
-            txtValorVendaMedio.Size = new Size(100, 23);
+            txtValorVendaMedio.Size = new Size(150, 27);
             txtValorVendaMedio.TabIndex = 0;
+            txtValorVendaMedio.Text = "0,00";
+            txtValorVendaMedio.TextAlign = HorizontalAlignment.Right;
             // 
             // txtValorCompraMedio
             // 
-            txtValorCompraMedio.Location = new Point(85, 170);
+            txtValorCompraMedio.Font = new Font("Segoe UI", 11.25F);
+            txtValorCompraMedio.Location = new Point(635, 152);
             txtValorCompraMedio.Name = "txtValorCompraMedio";
-            txtValorCompraMedio.Size = new Size(100, 23);
+            txtValorCompraMedio.Size = new Size(150, 27);
             txtValorCompraMedio.TabIndex = 0;
+            txtValorCompraMedio.Text = "0,00";
+            txtValorCompraMedio.TextAlign = HorizontalAlignment.Right;
             // 
             // txtNomePdt
             // 
-            txtNomePdt.Location = new Point(85, 66);
+            txtNomePdt.Font = new Font("Segoe UI", 11.25F);
+            txtNomePdt.Location = new Point(374, 152);
             txtNomePdt.Name = "txtNomePdt";
-            txtNomePdt.Size = new Size(100, 23);
+            txtNomePdt.PlaceholderText = "Ex.: Feijão";
+            txtNomePdt.Size = new Size(150, 27);
             txtNomePdt.TabIndex = 0;
             // 
             // pnlVisualizarPdt
@@ -287,7 +381,7 @@ namespace DomApp
             pnlVisualizarPdt.ForeColor = SystemColors.ActiveCaptionText;
             pnlVisualizarPdt.Location = new Point(0, 100);
             pnlVisualizarPdt.Name = "pnlVisualizarPdt";
-            pnlVisualizarPdt.Size = new Size(1519, 631);
+            pnlVisualizarPdt.Size = new Size(1183, 507);
             pnlVisualizarPdt.TabIndex = 2;
             pnlVisualizarPdt.Visible = false;
             // 
@@ -299,7 +393,7 @@ namespace DomApp
             pnlDGVVisualizarPdt.Location = new Point(0, 117);
             pnlDGVVisualizarPdt.Name = "pnlDGVVisualizarPdt";
             pnlDGVVisualizarPdt.Padding = new Padding(5);
-            pnlDGVVisualizarPdt.Size = new Size(1519, 514);
+            pnlDGVVisualizarPdt.Size = new Size(1183, 390);
             pnlDGVVisualizarPdt.TabIndex = 5;
             // 
             // dgvListaProdutos
@@ -310,17 +404,17 @@ namespace DomApp
             dgvListaProdutos.GridColor = Color.SandyBrown;
             dgvListaProdutos.Location = new Point(5, 5);
             dgvListaProdutos.Name = "dgvListaProdutos";
-            dgvListaProdutos.Size = new Size(1509, 504);
+            dgvListaProdutos.Size = new Size(1173, 380);
             dgvListaProdutos.TabIndex = 0;
             // 
             // pnlTitulo
             // 
-            pnlTitulo.BackColor = Color.DarkRed;
+            pnlTitulo.BackColor = Color.Goldenrod;
             pnlTitulo.Controls.Add(label7);
             pnlTitulo.Dock = DockStyle.Top;
             pnlTitulo.Location = new Point(0, 0);
             pnlTitulo.Name = "pnlTitulo";
-            pnlTitulo.Size = new Size(1519, 117);
+            pnlTitulo.Size = new Size(1183, 117);
             pnlTitulo.TabIndex = 4;
             // 
             // label7
@@ -329,7 +423,7 @@ namespace DomApp
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(553, 44);
+            label7.Location = new Point(421, 33);
             label7.Name = "label7";
             label7.Size = new Size(382, 47);
             label7.TabIndex = 3;
@@ -344,7 +438,7 @@ namespace DomApp
             pnlBuscarProdutos.ForeColor = SystemColors.ActiveCaptionText;
             pnlBuscarProdutos.Location = new Point(0, 100);
             pnlBuscarProdutos.Name = "pnlBuscarProdutos";
-            pnlBuscarProdutos.Size = new Size(1519, 631);
+            pnlBuscarProdutos.Size = new Size(1183, 507);
             pnlBuscarProdutos.TabIndex = 3;
             pnlBuscarProdutos.Visible = false;
             // 
@@ -352,9 +446,9 @@ namespace DomApp
             // 
             panel1.Controls.Add(dgvBuscaDeProdutos);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 146);
+            panel1.Location = new Point(0, 116);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1519, 485);
+            panel1.Size = new Size(1183, 391);
             panel1.TabIndex = 13;
             // 
             // dgvBuscaDeProdutos
@@ -364,12 +458,13 @@ namespace DomApp
             dgvBuscaDeProdutos.Dock = DockStyle.Fill;
             dgvBuscaDeProdutos.Location = new Point(0, 0);
             dgvBuscaDeProdutos.Name = "dgvBuscaDeProdutos";
-            dgvBuscaDeProdutos.Size = new Size(1519, 485);
+            dgvBuscaDeProdutos.Size = new Size(1183, 391);
             dgvBuscaDeProdutos.TabIndex = 11;
             // 
             // panel2
             // 
-            panel2.BackColor = Color.MediumSpringGreen;
+            panel2.BackColor = Color.Goldenrod;
+            panel2.Controls.Add(flowLayoutPanel1);
             panel2.Controls.Add(cmbBuscaTipo);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(txtBuscaNome);
@@ -384,17 +479,25 @@ namespace DomApp
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1519, 146);
+            panel2.Size = new Size(1183, 116);
             panel2.TabIndex = 12;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(1164, 67);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(200, 100);
+            flowLayoutPanel1.TabIndex = 12;
             // 
             // cmbBuscaTipo
             // 
             cmbBuscaTipo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBuscaTipo.Font = new Font("Segoe UI", 11.25F);
             cmbBuscaTipo.FormattingEnabled = true;
             cmbBuscaTipo.Items.AddRange(new object[] { "", "Cereal", "Laticínios", "Test", "Test1" });
             cmbBuscaTipo.Location = new Point(479, 44);
             cmbBuscaTipo.Name = "cmbBuscaTipo";
-            cmbBuscaTipo.Size = new Size(136, 23);
+            cmbBuscaTipo.Size = new Size(136, 28);
             cmbBuscaTipo.TabIndex = 11;
             // 
             // label9
@@ -408,9 +511,11 @@ namespace DomApp
             // 
             // txtBuscaNome
             // 
+            txtBuscaNome.Font = new Font("Segoe UI", 11.25F);
             txtBuscaNome.Location = new Point(255, 44);
             txtBuscaNome.Name = "txtBuscaNome";
-            txtBuscaNome.Size = new Size(136, 23);
+            txtBuscaNome.PlaceholderText = "Digite o Nome";
+            txtBuscaNome.Size = new Size(136, 27);
             txtBuscaNome.TabIndex = 4;
             // 
             // label13
@@ -424,9 +529,11 @@ namespace DomApp
             // 
             // txtBuscaId
             // 
+            txtBuscaId.Font = new Font("Segoe UI", 11.25F);
             txtBuscaId.Location = new Point(17, 44);
             txtBuscaId.Name = "txtBuscaId";
-            txtBuscaId.Size = new Size(136, 23);
+            txtBuscaId.PlaceholderText = "Digite o Id";
+            txtBuscaId.Size = new Size(136, 27);
             txtBuscaId.TabIndex = 4;
             // 
             // label12
@@ -440,9 +547,11 @@ namespace DomApp
             // 
             // txtBuscaQtdMaiorQue
             // 
+            txtBuscaQtdMaiorQue.Font = new Font("Segoe UI", 11.25F);
             txtBuscaQtdMaiorQue.Location = new Point(687, 44);
             txtBuscaQtdMaiorQue.Name = "txtBuscaQtdMaiorQue";
-            txtBuscaQtdMaiorQue.Size = new Size(136, 23);
+            txtBuscaQtdMaiorQue.PlaceholderText = "Ex: 10";
+            txtBuscaQtdMaiorQue.Size = new Size(136, 27);
             txtBuscaQtdMaiorQue.TabIndex = 4;
             // 
             // label11
@@ -456,9 +565,11 @@ namespace DomApp
             // 
             // txtBuscaQtdMenorQue
             // 
+            txtBuscaQtdMenorQue.Font = new Font("Segoe UI", 11.25F);
             txtBuscaQtdMenorQue.Location = new Point(891, 44);
             txtBuscaQtdMenorQue.Name = "txtBuscaQtdMenorQue";
-            txtBuscaQtdMenorQue.Size = new Size(136, 23);
+            txtBuscaQtdMenorQue.PlaceholderText = "Ex: 20";
+            txtBuscaQtdMenorQue.Size = new Size(136, 27);
             txtBuscaQtdMenorQue.TabIndex = 4;
             // 
             // label10
@@ -480,14 +591,224 @@ namespace DomApp
             btnBuscar.UseVisualStyleBackColor = true;
             btnBuscar.Click += btnBuscar_Click;
             // 
+            // pnlDeletar
+            // 
+            pnlDeletar.Controls.Add(pnlConfirmarId);
+            pnlDeletar.Controls.Add(pnlConfirmarNome);
+            pnlDeletar.Controls.Add(btnDeletar);
+            pnlDeletar.Controls.Add(label15);
+            pnlDeletar.Controls.Add(label14);
+            pnlDeletar.Controls.Add(txtDeletarNome);
+            pnlDeletar.Controls.Add(txtDeletarId);
+            pnlDeletar.Controls.Add(panel3);
+            pnlDeletar.Dock = DockStyle.Fill;
+            pnlDeletar.Location = new Point(0, 100);
+            pnlDeletar.Name = "pnlDeletar";
+            pnlDeletar.Size = new Size(1183, 507);
+            pnlDeletar.TabIndex = 12;
+            // 
+            // pnlConfirmarId
+            // 
+            pnlConfirmarId.Anchor = AnchorStyles.Top;
+            pnlConfirmarId.BackColor = Color.SandyBrown;
+            pnlConfirmarId.Controls.Add(btnSairConfirmarId);
+            pnlConfirmarId.Controls.Add(label16);
+            pnlConfirmarId.Controls.Add(btnConfirmar);
+            pnlConfirmarId.Controls.Add(txtConfirmarId);
+            pnlConfirmarId.Location = new Point(502, 139);
+            pnlConfirmarId.Name = "pnlConfirmarId";
+            pnlConfirmarId.Size = new Size(234, 194);
+            pnlConfirmarId.TabIndex = 5;
+            pnlConfirmarId.Visible = false;
+            // 
+            // btnSairConfirmarId
+            // 
+            btnSairConfirmarId.FlatAppearance.BorderSize = 0;
+            btnSairConfirmarId.FlatStyle = FlatStyle.Flat;
+            btnSairConfirmarId.Image = (Image)resources.GetObject("btnSairConfirmarId.Image");
+            btnSairConfirmarId.Location = new Point(180, 157);
+            btnSairConfirmarId.Name = "btnSairConfirmarId";
+            btnSairConfirmarId.Size = new Size(37, 31);
+            btnSairConfirmarId.TabIndex = 3;
+            btnSairConfirmarId.UseVisualStyleBackColor = true;
+            btnSairConfirmarId.Click += btnSairConfirmarId_Click;
+            // 
+            // label16
+            // 
+            label16.Anchor = AnchorStyles.Top;
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.Location = new Point(38, 21);
+            label16.Name = "label16";
+            label16.Size = new Size(154, 40);
+            label16.TabIndex = 2;
+            label16.Text = "Quer Mesmo Deletar?\r\nSe sim";
+            label16.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnConfirmar
+            // 
+            btnConfirmar.Anchor = AnchorStyles.Top;
+            btnConfirmar.Location = new Point(79, 112);
+            btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.Size = new Size(75, 23);
+            btnConfirmar.TabIndex = 1;
+            btnConfirmar.Text = "Deletar";
+            btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
+            // 
+            // txtConfirmarId
+            // 
+            txtConfirmarId.Anchor = AnchorStyles.Top;
+            txtConfirmarId.Font = new Font("Segoe UI", 11.25F);
+            txtConfirmarId.Location = new Point(51, 64);
+            txtConfirmarId.Name = "txtConfirmarId";
+            txtConfirmarId.PlaceholderText = "Confirme o Id";
+            txtConfirmarId.Size = new Size(128, 27);
+            txtConfirmarId.TabIndex = 1;
+            // 
+            // pnlConfirmarNome
+            // 
+            pnlConfirmarNome.Anchor = AnchorStyles.Top;
+            pnlConfirmarNome.BackColor = Color.SandyBrown;
+            pnlConfirmarNome.Controls.Add(btnSairConfirmarNome);
+            pnlConfirmarNome.Controls.Add(label17);
+            pnlConfirmarNome.Controls.Add(btnConfirmarNome);
+            pnlConfirmarNome.Controls.Add(txtConfirmarNome);
+            pnlConfirmarNome.Location = new Point(502, 139);
+            pnlConfirmarNome.Name = "pnlConfirmarNome";
+            pnlConfirmarNome.Size = new Size(234, 194);
+            pnlConfirmarNome.TabIndex = 6;
+            pnlConfirmarNome.Visible = false;
+            // 
+            // btnSairConfirmarNome
+            // 
+            btnSairConfirmarNome.FlatAppearance.BorderSize = 0;
+            btnSairConfirmarNome.FlatStyle = FlatStyle.Flat;
+            btnSairConfirmarNome.Image = (Image)resources.GetObject("btnSairConfirmarNome.Image");
+            btnSairConfirmarNome.Location = new Point(180, 155);
+            btnSairConfirmarNome.Name = "btnSairConfirmarNome";
+            btnSairConfirmarNome.Size = new Size(37, 33);
+            btnSairConfirmarNome.TabIndex = 3;
+            btnSairConfirmarNome.UseVisualStyleBackColor = true;
+            btnSairConfirmarNome.Click += btnSairConfirmarNome_Click;
+            // 
+            // label17
+            // 
+            label17.Anchor = AnchorStyles.Top;
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.Location = new Point(38, 20);
+            label17.Name = "label17";
+            label17.Size = new Size(154, 40);
+            label17.TabIndex = 2;
+            label17.Text = "Quer Mesmo Deletar?\r\nSe sim";
+            label17.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnConfirmarNome
+            // 
+            btnConfirmarNome.Anchor = AnchorStyles.Top;
+            btnConfirmarNome.Location = new Point(74, 109);
+            btnConfirmarNome.Name = "btnConfirmarNome";
+            btnConfirmarNome.Size = new Size(75, 23);
+            btnConfirmarNome.TabIndex = 1;
+            btnConfirmarNome.Text = "Deletar";
+            btnConfirmarNome.UseVisualStyleBackColor = true;
+            btnConfirmarNome.Click += btnConfirmarNome_Click;
+            // 
+            // txtConfirmarNome
+            // 
+            txtConfirmarNome.Anchor = AnchorStyles.Top;
+            txtConfirmarNome.Font = new Font("Segoe UI", 11.25F);
+            txtConfirmarNome.Location = new Point(51, 64);
+            txtConfirmarNome.Name = "txtConfirmarNome";
+            txtConfirmarNome.PlaceholderText = "Confirme o Nome";
+            txtConfirmarNome.Size = new Size(128, 27);
+            txtConfirmarNome.TabIndex = 1;
+            // 
+            // btnDeletar
+            // 
+            btnDeletar.Anchor = AnchorStyles.Top;
+            btnDeletar.Location = new Point(543, 305);
+            btnDeletar.Name = "btnDeletar";
+            btnDeletar.Size = new Size(75, 23);
+            btnDeletar.TabIndex = 1;
+            btnDeletar.Text = "Deletar";
+            btnDeletar.UseVisualStyleBackColor = true;
+            btnDeletar.Click += btnDeletar_Click;
+            // 
+            // label15
+            // 
+            label15.Anchor = AnchorStyles.Top;
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 11.25F);
+            label15.Location = new Point(516, 228);
+            label15.Name = "label15";
+            label15.Size = new Size(130, 20);
+            label15.TabIndex = 4;
+            label15.Text = "Deletar por Nome";
+            // 
+            // label14
+            // 
+            label14.Anchor = AnchorStyles.Top;
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 11.25F);
+            label14.Location = new Point(516, 146);
+            label14.Name = "label14";
+            label14.Size = new Size(102, 20);
+            label14.TabIndex = 3;
+            label14.Text = "Deletar por Id";
+            // 
+            // txtDeletarNome
+            // 
+            txtDeletarNome.Anchor = AnchorStyles.Top;
+            txtDeletarNome.Font = new Font("Segoe UI", 11.25F);
+            txtDeletarNome.Location = new Point(519, 251);
+            txtDeletarNome.Name = "txtDeletarNome";
+            txtDeletarNome.PlaceholderText = "Nome do Produto";
+            txtDeletarNome.Size = new Size(128, 27);
+            txtDeletarNome.TabIndex = 2;
+            // 
+            // txtDeletarId
+            // 
+            txtDeletarId.Anchor = AnchorStyles.Top;
+            txtDeletarId.Font = new Font("Segoe UI", 11.25F);
+            txtDeletarId.Location = new Point(519, 169);
+            txtDeletarId.Name = "txtDeletarId";
+            txtDeletarId.PlaceholderText = "Id do Produto";
+            txtDeletarId.Size = new Size(128, 27);
+            txtDeletarId.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.Goldenrod;
+            panel3.Controls.Add(label8);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1183, 117);
+            panel3.TabIndex = 0;
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Top;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(449, 18);
+            label8.Name = "label8";
+            label8.Size = new Size(276, 45);
+            label8.TabIndex = 0;
+            label8.Text = "Deletar Produtos";
+            // 
             // Produtos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1519, 731);
+            ClientSize = new Size(1183, 607);
+            ControlBox = false;
+            Controls.Add(pnlCadProduto);
+            Controls.Add(pnlDeletar);
             Controls.Add(pnlBuscarProdutos);
             Controls.Add(pnlVisualizarPdt);
-            Controls.Add(pnlCadProduto);
             Controls.Add(pnlNav);
             Name = "Produtos";
             StartPosition = FormStartPosition.CenterScreen;
@@ -497,6 +818,8 @@ namespace DomApp
             pnlOpcoes.ResumeLayout(false);
             pnlCadProduto.ResumeLayout(false);
             pnlCadProduto.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             pnlVisualizarPdt.ResumeLayout(false);
             pnlDGVVisualizarPdt.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListaProdutos).EndInit();
@@ -507,6 +830,14 @@ namespace DomApp
             ((System.ComponentModel.ISupportInitialize)dgvBuscaDeProdutos).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            pnlDeletar.ResumeLayout(false);
+            pnlDeletar.PerformLayout();
+            pnlConfirmarId.ResumeLayout(false);
+            pnlConfirmarId.PerformLayout();
+            pnlConfirmarNome.ResumeLayout(false);
+            pnlConfirmarNome.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -549,9 +880,30 @@ namespace DomApp
         private Panel panel2;
         private Panel pnlDGVVisualizarPdt;
         private Panel panel1;
-        private System.Windows.Forms.ComboBox txtBuscaTipo;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox cmbBuscaTipo;
         private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.Button btnPnlDeletar;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Panel pnlDeletar;
+        private Label label14;
+        private System.Windows.Forms.TextBox txtDeletarId;
+        private Panel panel3;
+        private Label label8;
+        private Panel pnlConfirmarId;
+        private System.Windows.Forms.TextBox txtConfirmarId;
+        private System.Windows.Forms.Button btnDeletar;
+        private Label label16;
+        private System.Windows.Forms.Button btnConfirmar;
+        private Label label15;
+        private System.Windows.Forms.TextBox txtDeletarNome;
+        private Panel pnlConfirmarNome;
+        private Label label17;
+        private System.Windows.Forms.Button btnConfirmarNome;
+        private System.Windows.Forms.TextBox txtConfirmarNome;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnSairConfirmarNome;
+        private System.Windows.Forms.Button btnSairConfirmarId;
+        private Panel panel4;
+        private Label label18;
     }
 }
