@@ -13,7 +13,7 @@ namespace DomApp
 {
     public partial class Produtos : Form
     {
-        
+
         string conexao = ConfigurationManager.ConnectionStrings["DomApp"].ConnectionString;
 
         public Produtos()
@@ -429,49 +429,15 @@ namespace DomApp
             pnlConfirmarId.Visible = false;
         }
 
-        /*private void InicializarTextBoxMonetario(TextBox tb)
+        private void Alterar()
         {
-            tb.Text = "0,00";
-            tb.TextAlign = HorizontalAlignment.Right;
 
-            tb.KeyPress += TxtValor_KeyPress;
-            tb.TextChanged += TxtValor_TextChanged;
         }
 
-        // Permite apenas números
-        private void TxtValor_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnConfirmarId_Click(object sender, EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                e.Handled = true;
+            pnlConfirmarId.Visible = true;
         }
-
-        // Formata o valor “do final pra frente”
-        private void TxtValor_TextChanged(object sender, EventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-
-            string numeros = "";
-            foreach (char c in tb.Text)
-                if (char.IsDigit(c))
-                    numeros += c;
-
-            if (string.IsNullOrEmpty(numeros))
-                numeros = "0";
-
-            decimal valor = decimal.Parse(numeros) / 100;
-
-            // Remove evento temporariamente para evitar loop
-            tb.TextChanged -= TxtValor_TextChanged;
-
-            // Formata como R$ 0,00
-            tb.Text = valor.ToString("C2", new CultureInfo("pt-BR"));
-
-            // Cursor no final
-            tb.SelectionStart = tb.Text.Length;
-
-            tb.TextChanged += TxtValor_TextChanged;
-        }*/
-
     }
 }
 

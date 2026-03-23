@@ -93,6 +93,20 @@ namespace DomApp
             txtDeletarId = new System.Windows.Forms.TextBox();
             panel3 = new Panel();
             label8 = new Label();
+            pnlAlterar = new Panel();
+            pnlAtributosAlterar = new Panel();
+            label24 = new Label();
+            btnAlterar = new System.Windows.Forms.Button();
+            txtAlterarNome = new System.Windows.Forms.TextBox();
+            cmbAlterarTipo = new System.Windows.Forms.ComboBox();
+            txtAlterarValorCompra = new System.Windows.Forms.TextBox();
+            label20 = new Label();
+            txtAlterarValorVenda = new System.Windows.Forms.TextBox();
+            label21 = new Label();
+            txtAlterarQtd = new System.Windows.Forms.TextBox();
+            label22 = new Label();
+            label23 = new Label();
+            panel5 = new Panel();
             pnlNav.SuspendLayout();
             pnlOpcoes.SuspendLayout();
             pnlCadProduto.SuspendLayout();
@@ -109,6 +123,8 @@ namespace DomApp
             pnlConfirmarId.SuspendLayout();
             pnlConfirmarNome.SuspendLayout();
             panel3.SuspendLayout();
+            pnlAlterar.SuspendLayout();
+            pnlAtributosAlterar.SuspendLayout();
             SuspendLayout();
             // 
             // pnlNav
@@ -799,12 +815,174 @@ namespace DomApp
             label8.TabIndex = 0;
             label8.Text = "Deletar Produtos";
             // 
+            // pnlAlterar
+            // 
+            pnlAlterar.BackColor = SystemColors.ControlDark;
+            pnlAlterar.Controls.Add(pnlAtributosAlterar);
+            pnlAlterar.Controls.Add(panel5);
+            pnlAlterar.Dock = DockStyle.Fill;
+            pnlAlterar.Location = new Point(0, 100);
+            pnlAlterar.Name = "pnlAlterar";
+            pnlAlterar.Size = new Size(1183, 507);
+            pnlAlterar.TabIndex = 6;
+            // 
+            // pnlAtributosAlterar
+            // 
+            pnlAtributosAlterar.Anchor = AnchorStyles.Top;
+            pnlAtributosAlterar.Controls.Add(label24);
+            pnlAtributosAlterar.Controls.Add(btnAlterar);
+            pnlAtributosAlterar.Controls.Add(txtAlterarNome);
+            pnlAtributosAlterar.Controls.Add(cmbAlterarTipo);
+            pnlAtributosAlterar.Controls.Add(txtAlterarValorCompra);
+            pnlAtributosAlterar.Controls.Add(label20);
+            pnlAtributosAlterar.Controls.Add(txtAlterarValorVenda);
+            pnlAtributosAlterar.Controls.Add(label21);
+            pnlAtributosAlterar.Controls.Add(txtAlterarQtd);
+            pnlAtributosAlterar.Controls.Add(label22);
+            pnlAtributosAlterar.Controls.Add(label23);
+            pnlAtributosAlterar.Location = new Point(374, 139);
+            pnlAtributosAlterar.Name = "pnlAtributosAlterar";
+            pnlAtributosAlterar.Size = new Size(488, 294);
+            pnlAtributosAlterar.TabIndex = 17;
+            pnlAtributosAlterar.Visible = false;
+            // 
+            // label24
+            // 
+            label24.Anchor = AnchorStyles.Top;
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 11F);
+            label24.Location = new Point(28, 14);
+            label24.Name = "label24";
+            label24.Size = new Size(129, 20);
+            label24.TabIndex = 14;
+            label24.Text = "Nome do Produto";
+            // 
+            // btnAlterar
+            // 
+            btnAlterar.Anchor = AnchorStyles.Top;
+            btnAlterar.Font = new Font("Segoe UI", 11F);
+            btnAlterar.Location = new Point(333, 200);
+            btnAlterar.Name = "btnAlterar";
+            btnAlterar.Size = new Size(86, 36);
+            btnAlterar.TabIndex = 16;
+            btnAlterar.Text = "Alterar";
+            btnAlterar.UseVisualStyleBackColor = true;
+            // 
+            // txtAlterarNome
+            // 
+            txtAlterarNome.Anchor = AnchorStyles.Top;
+            txtAlterarNome.Font = new Font("Segoe UI", 11.25F);
+            txtAlterarNome.Location = new Point(28, 44);
+            txtAlterarNome.Name = "txtAlterarNome";
+            txtAlterarNome.PlaceholderText = "Ex.: Feijão";
+            txtAlterarNome.Size = new Size(150, 27);
+            txtAlterarNome.TabIndex = 8;
+            // 
+            // cmbAlterarTipo
+            // 
+            cmbAlterarTipo.Anchor = AnchorStyles.Top;
+            cmbAlterarTipo.AutoCompleteCustomSource.AddRange(new string[] { "Cereal", "Laticíneos", "Test", "Test1" });
+            cmbAlterarTipo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAlterarTipo.Font = new Font("Segoe UI", 11.25F);
+            cmbAlterarTipo.FormattingEnabled = true;
+            cmbAlterarTipo.Items.AddRange(new object[] { "Cereal", "Laticínios", "Test", "Test1" });
+            cmbAlterarTipo.Location = new Point(28, 208);
+            cmbAlterarTipo.Name = "cmbAlterarTipo";
+            cmbAlterarTipo.Size = new Size(150, 28);
+            cmbAlterarTipo.TabIndex = 15;
+            // 
+            // txtAlterarValorCompra
+            // 
+            txtAlterarValorCompra.Anchor = AnchorStyles.Top;
+            txtAlterarValorCompra.Font = new Font("Segoe UI", 11.25F);
+            txtAlterarValorCompra.Location = new Point(289, 44);
+            txtAlterarValorCompra.Name = "txtAlterarValorCompra";
+            txtAlterarValorCompra.Size = new Size(150, 27);
+            txtAlterarValorCompra.TabIndex = 7;
+            txtAlterarValorCompra.Text = "0,00";
+            txtAlterarValorCompra.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label20
+            // 
+            label20.Anchor = AnchorStyles.Top;
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 11F);
+            label20.Location = new Point(28, 102);
+            label20.Name = "label20";
+            label20.Size = new Size(169, 20);
+            label20.TabIndex = 10;
+            label20.Text = "Quantidade em estoque";
+            // 
+            // txtAlterarValorVenda
+            // 
+            txtAlterarValorVenda.Anchor = AnchorStyles.Top;
+            txtAlterarValorVenda.Font = new Font("Segoe UI", 11.25F);
+            txtAlterarValorVenda.Location = new Point(289, 131);
+            txtAlterarValorVenda.Name = "txtAlterarValorVenda";
+            txtAlterarValorVenda.Size = new Size(150, 27);
+            txtAlterarValorVenda.TabIndex = 6;
+            txtAlterarValorVenda.Text = "0,00";
+            txtAlterarValorVenda.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label21
+            // 
+            label21.Anchor = AnchorStyles.Top;
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 11F);
+            label21.Location = new Point(28, 176);
+            label21.Name = "label21";
+            label21.Size = new Size(117, 20);
+            label21.TabIndex = 11;
+            label21.Text = "Tipo de Produto";
+            // 
+            // txtAlterarQtd
+            // 
+            txtAlterarQtd.Anchor = AnchorStyles.Top;
+            txtAlterarQtd.Font = new Font("Segoe UI", 11.25F);
+            txtAlterarQtd.Location = new Point(28, 131);
+            txtAlterarQtd.Name = "txtAlterarQtd";
+            txtAlterarQtd.PlaceholderText = "Ex.: 35";
+            txtAlterarQtd.Size = new Size(150, 27);
+            txtAlterarQtd.TabIndex = 5;
+            // 
+            // label22
+            // 
+            label22.Anchor = AnchorStyles.Top;
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 11F);
+            label22.Location = new Point(289, 102);
+            label22.Name = "label22";
+            label22.Size = new Size(156, 20);
+            label22.TabIndex = 12;
+            label22.Text = "Valor de Venda Médio";
+            // 
+            // label23
+            // 
+            label23.Anchor = AnchorStyles.Top;
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 11F);
+            label23.Location = new Point(289, 14);
+            label23.Name = "label23";
+            label23.Size = new Size(168, 20);
+            label23.TabIndex = 13;
+            label23.Text = "Valor de Compra Médio";
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.Goldenrod;
+            panel5.Dock = DockStyle.Top;
+            panel5.Location = new Point(0, 0);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1183, 100);
+            panel5.TabIndex = 0;
+            // 
             // Produtos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1183, 607);
             ControlBox = false;
+            Controls.Add(pnlAlterar);
             Controls.Add(pnlCadProduto);
             Controls.Add(pnlDeletar);
             Controls.Add(pnlBuscarProdutos);
@@ -838,6 +1016,9 @@ namespace DomApp
             pnlConfirmarNome.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            pnlAlterar.ResumeLayout(false);
+            pnlAtributosAlterar.ResumeLayout(false);
+            pnlAtributosAlterar.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -905,5 +1086,19 @@ namespace DomApp
         private System.Windows.Forms.Button btnSairConfirmarId;
         private Panel panel4;
         private Label label18;
+        private Panel pnlAlterar;
+        private System.Windows.Forms.ComboBox cmbAlterarTipo;
+        private Label label20;
+        private Label label21;
+        private Label label22;
+        private Label label23;
+        private Label label24;
+        private System.Windows.Forms.TextBox txtAlterarQtd;
+        private System.Windows.Forms.TextBox txtAlterarValorVenda;
+        private System.Windows.Forms.TextBox txtAlterarValorCompra;
+        private System.Windows.Forms.TextBox txtAlterarNome;
+        private Panel panel5;
+        private Panel pnlAtributosAlterar;
+        private System.Windows.Forms.Button btnAlterar;
     }
 }
