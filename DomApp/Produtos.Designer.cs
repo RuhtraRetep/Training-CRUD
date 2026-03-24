@@ -34,6 +34,7 @@ namespace DomApp
             pnlNav = new Panel();
             btnLogout = new System.Windows.Forms.Button();
             pnlOpcoes = new Panel();
+            btnPnlAlterar = new System.Windows.Forms.Button();
             btnPnlDeletar = new System.Windows.Forms.Button();
             btnBuscarProdutos = new System.Windows.Forms.Button();
             btnCadastrarProdutos = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@ namespace DomApp
             panel1 = new Panel();
             dgvBuscaDeProdutos = new DataGridView();
             panel2 = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             cmbBuscaTipo = new System.Windows.Forms.ComboBox();
             label9 = new Label();
             txtBuscaNome = new System.Windows.Forms.TextBox();
@@ -94,6 +94,10 @@ namespace DomApp
             panel3 = new Panel();
             label8 = new Label();
             pnlAlterar = new Panel();
+            panel6 = new Panel();
+            btnEnviarAlterar = new System.Windows.Forms.Button();
+            label26 = new Label();
+            clbAlterarProdutos = new CheckedListBox();
             pnlAtributosAlterar = new Panel();
             label24 = new Label();
             btnAlterar = new System.Windows.Forms.Button();
@@ -106,7 +110,12 @@ namespace DomApp
             txtAlterarQtd = new System.Windows.Forms.TextBox();
             label22 = new Label();
             label23 = new Label();
+            pnlConfirmarAlterar = new Panel();
+            label19 = new Label();
+            btnConfirmarAlteracao = new System.Windows.Forms.Button();
+            txtConfirmarIdAlterar = new System.Windows.Forms.TextBox();
             panel5 = new Panel();
+            label25 = new Label();
             pnlNav.SuspendLayout();
             pnlOpcoes.SuspendLayout();
             pnlCadProduto.SuspendLayout();
@@ -124,7 +133,10 @@ namespace DomApp
             pnlConfirmarNome.SuspendLayout();
             panel3.SuspendLayout();
             pnlAlterar.SuspendLayout();
+            panel6.SuspendLayout();
             pnlAtributosAlterar.SuspendLayout();
+            pnlConfirmarAlterar.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // pnlNav
@@ -135,7 +147,7 @@ namespace DomApp
             pnlNav.Controls.Add(label1);
             pnlNav.Controls.Add(lblLogin);
             pnlNav.Dock = DockStyle.Top;
-            pnlNav.ForeColor = Color.White;
+            pnlNav.ForeColor = Color.Black;
             pnlNav.Location = new Point(0, 0);
             pnlNav.Name = "pnlNav";
             pnlNav.Size = new Size(1183, 100);
@@ -157,14 +169,26 @@ namespace DomApp
             // pnlOpcoes
             // 
             pnlOpcoes.BackColor = Color.Transparent;
+            pnlOpcoes.Controls.Add(btnPnlAlterar);
             pnlOpcoes.Controls.Add(btnPnlDeletar);
             pnlOpcoes.Controls.Add(btnBuscarProdutos);
             pnlOpcoes.Controls.Add(btnCadastrarProdutos);
             pnlOpcoes.Controls.Add(btnVisualizarPdt);
             pnlOpcoes.Location = new Point(19, 12);
             pnlOpcoes.Name = "pnlOpcoes";
-            pnlOpcoes.Size = new Size(389, 77);
+            pnlOpcoes.Size = new Size(484, 77);
             pnlOpcoes.TabIndex = 3;
+            // 
+            // btnPnlAlterar
+            // 
+            btnPnlAlterar.ForeColor = Color.Black;
+            btnPnlAlterar.Location = new Point(395, 17);
+            btnPnlAlterar.Name = "btnPnlAlterar";
+            btnPnlAlterar.Size = new Size(75, 44);
+            btnPnlAlterar.TabIndex = 4;
+            btnPnlAlterar.Text = "Alterar Produtos";
+            btnPnlAlterar.UseVisualStyleBackColor = true;
+            btnPnlAlterar.Click += btnPnlAlterar_Click;
             // 
             // btnPnlDeletar
             // 
@@ -215,7 +239,8 @@ namespace DomApp
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(403, 9);
+            label1.ForeColor = Color.BlanchedAlmond;
+            label1.Location = new Point(516, 12);
             label1.Name = "label1";
             label1.Size = new Size(377, 37);
             label1.TabIndex = 1;
@@ -226,8 +251,8 @@ namespace DomApp
             lblLogin.Anchor = AnchorStyles.Top;
             lblLogin.AutoSize = true;
             lblLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLogin.ForeColor = Color.Black;
-            lblLogin.Location = new Point(502, 49);
+            lblLogin.ForeColor = Color.BlanchedAlmond;
+            lblLogin.Location = new Point(615, 52);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(46, 21);
             lblLogin.TabIndex = 1;
@@ -480,7 +505,6 @@ namespace DomApp
             // panel2
             // 
             panel2.BackColor = Color.Goldenrod;
-            panel2.Controls.Add(flowLayoutPanel1);
             panel2.Controls.Add(cmbBuscaTipo);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(txtBuscaNome);
@@ -497,13 +521,6 @@ namespace DomApp
             panel2.Name = "panel2";
             panel2.Size = new Size(1183, 116);
             panel2.TabIndex = 12;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Location = new Point(1164, 67);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(200, 100);
-            flowLayoutPanel1.TabIndex = 12;
             // 
             // cmbBuscaTipo
             // 
@@ -599,9 +616,10 @@ namespace DomApp
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(1210, 45);
+            btnBuscar.Font = new Font("Segoe UI", 11F);
+            btnBuscar.Location = new Point(1073, 44);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(75, 23);
+            btnBuscar.Size = new Size(75, 28);
             btnBuscar.TabIndex = 5;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
@@ -818,13 +836,61 @@ namespace DomApp
             // pnlAlterar
             // 
             pnlAlterar.BackColor = SystemColors.ControlDark;
+            pnlAlterar.Controls.Add(panel6);
             pnlAlterar.Controls.Add(pnlAtributosAlterar);
+            pnlAlterar.Controls.Add(pnlConfirmarAlterar);
             pnlAlterar.Controls.Add(panel5);
             pnlAlterar.Dock = DockStyle.Fill;
             pnlAlterar.Location = new Point(0, 100);
             pnlAlterar.Name = "pnlAlterar";
             pnlAlterar.Size = new Size(1183, 507);
             pnlAlterar.TabIndex = 6;
+            pnlAlterar.Visible = false;
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(btnEnviarAlterar);
+            panel6.Controls.Add(label26);
+            panel6.Controls.Add(clbAlterarProdutos);
+            panel6.Location = new Point(167, 130);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(282, 198);
+            panel6.TabIndex = 19;
+            // 
+            // btnEnviarAlterar
+            // 
+            btnEnviarAlterar.Font = new Font("Segoe UI", 11F);
+            btnEnviarAlterar.Location = new Point(200, 158);
+            btnEnviarAlterar.Name = "btnEnviarAlterar";
+            btnEnviarAlterar.Size = new Size(75, 31);
+            btnEnviarAlterar.TabIndex = 20;
+            btnEnviarAlterar.Text = "Enviar";
+            btnEnviarAlterar.UseVisualStyleBackColor = true;
+            btnEnviarAlterar.Click += btnEnviarAlterar_Click;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
+            label26.Location = new Point(4, 14);
+            label26.Name = "label26";
+            label26.Size = new Size(274, 23);
+            label26.TabIndex = 1;
+            label26.Text = "Quais atributos você deseja alterar";
+            // 
+            // clbAlterarProdutos
+            // 
+            clbAlterarProdutos.Anchor = AnchorStyles.Top;
+            clbAlterarProdutos.BackColor = SystemColors.ControlDark;
+            clbAlterarProdutos.BorderStyle = BorderStyle.None;
+            clbAlterarProdutos.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clbAlterarProdutos.FormattingEnabled = true;
+            clbAlterarProdutos.Items.AddRange(new object[] { "Nome", "Quantidade em Estoque", "Tipo", "Valor de Compra", "Valor de Venda" });
+            clbAlterarProdutos.Location = new Point(13, 52);
+            clbAlterarProdutos.Margin = new Padding(0);
+            clbAlterarProdutos.Name = "clbAlterarProdutos";
+            clbAlterarProdutos.Size = new Size(193, 110);
+            clbAlterarProdutos.TabIndex = 0;
             // 
             // pnlAtributosAlterar
             // 
@@ -840,9 +906,9 @@ namespace DomApp
             pnlAtributosAlterar.Controls.Add(txtAlterarQtd);
             pnlAtributosAlterar.Controls.Add(label22);
             pnlAtributosAlterar.Controls.Add(label23);
-            pnlAtributosAlterar.Location = new Point(374, 139);
+            pnlAtributosAlterar.Location = new Point(687, 123);
             pnlAtributosAlterar.Name = "pnlAtributosAlterar";
-            pnlAtributosAlterar.Size = new Size(488, 294);
+            pnlAtributosAlterar.Size = new Size(457, 294);
             pnlAtributosAlterar.TabIndex = 17;
             pnlAtributosAlterar.Visible = false;
             // 
@@ -851,32 +917,36 @@ namespace DomApp
             label24.Anchor = AnchorStyles.Top;
             label24.AutoSize = true;
             label24.Font = new Font("Segoe UI", 11F);
-            label24.Location = new Point(28, 14);
+            label24.Location = new Point(12, 14);
             label24.Name = "label24";
             label24.Size = new Size(129, 20);
             label24.TabIndex = 14;
             label24.Text = "Nome do Produto";
+            label24.Visible = false;
             // 
             // btnAlterar
             // 
             btnAlterar.Anchor = AnchorStyles.Top;
             btnAlterar.Font = new Font("Segoe UI", 11F);
-            btnAlterar.Location = new Point(333, 200);
+            btnAlterar.Location = new Point(317, 200);
             btnAlterar.Name = "btnAlterar";
             btnAlterar.Size = new Size(86, 36);
             btnAlterar.TabIndex = 16;
             btnAlterar.Text = "Alterar";
             btnAlterar.UseVisualStyleBackColor = true;
+            btnAlterar.Visible = false;
+            btnAlterar.Click += btnAlterar_Click;
             // 
             // txtAlterarNome
             // 
             txtAlterarNome.Anchor = AnchorStyles.Top;
             txtAlterarNome.Font = new Font("Segoe UI", 11.25F);
-            txtAlterarNome.Location = new Point(28, 44);
+            txtAlterarNome.Location = new Point(12, 44);
             txtAlterarNome.Name = "txtAlterarNome";
             txtAlterarNome.PlaceholderText = "Ex.: Feijão";
             txtAlterarNome.Size = new Size(150, 27);
             txtAlterarNome.TabIndex = 8;
+            txtAlterarNome.Visible = false;
             // 
             // cmbAlterarTipo
             // 
@@ -886,95 +956,160 @@ namespace DomApp
             cmbAlterarTipo.Font = new Font("Segoe UI", 11.25F);
             cmbAlterarTipo.FormattingEnabled = true;
             cmbAlterarTipo.Items.AddRange(new object[] { "Cereal", "Laticínios", "Test", "Test1" });
-            cmbAlterarTipo.Location = new Point(28, 208);
+            cmbAlterarTipo.Location = new Point(12, 208);
             cmbAlterarTipo.Name = "cmbAlterarTipo";
             cmbAlterarTipo.Size = new Size(150, 28);
             cmbAlterarTipo.TabIndex = 15;
+            cmbAlterarTipo.Visible = false;
             // 
             // txtAlterarValorCompra
             // 
             txtAlterarValorCompra.Anchor = AnchorStyles.Top;
             txtAlterarValorCompra.Font = new Font("Segoe UI", 11.25F);
-            txtAlterarValorCompra.Location = new Point(289, 44);
+            txtAlterarValorCompra.Location = new Point(273, 44);
             txtAlterarValorCompra.Name = "txtAlterarValorCompra";
             txtAlterarValorCompra.Size = new Size(150, 27);
             txtAlterarValorCompra.TabIndex = 7;
             txtAlterarValorCompra.Text = "0,00";
             txtAlterarValorCompra.TextAlign = HorizontalAlignment.Right;
+            txtAlterarValorCompra.Visible = false;
             // 
             // label20
             // 
             label20.Anchor = AnchorStyles.Top;
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 11F);
-            label20.Location = new Point(28, 102);
+            label20.Location = new Point(12, 102);
             label20.Name = "label20";
             label20.Size = new Size(169, 20);
             label20.TabIndex = 10;
             label20.Text = "Quantidade em estoque";
+            label20.Visible = false;
             // 
             // txtAlterarValorVenda
             // 
             txtAlterarValorVenda.Anchor = AnchorStyles.Top;
             txtAlterarValorVenda.Font = new Font("Segoe UI", 11.25F);
-            txtAlterarValorVenda.Location = new Point(289, 131);
+            txtAlterarValorVenda.Location = new Point(273, 131);
             txtAlterarValorVenda.Name = "txtAlterarValorVenda";
             txtAlterarValorVenda.Size = new Size(150, 27);
             txtAlterarValorVenda.TabIndex = 6;
             txtAlterarValorVenda.Text = "0,00";
             txtAlterarValorVenda.TextAlign = HorizontalAlignment.Right;
+            txtAlterarValorVenda.Visible = false;
             // 
             // label21
             // 
             label21.Anchor = AnchorStyles.Top;
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 11F);
-            label21.Location = new Point(28, 176);
+            label21.Location = new Point(12, 176);
             label21.Name = "label21";
             label21.Size = new Size(117, 20);
             label21.TabIndex = 11;
             label21.Text = "Tipo de Produto";
+            label21.Visible = false;
             // 
             // txtAlterarQtd
             // 
             txtAlterarQtd.Anchor = AnchorStyles.Top;
             txtAlterarQtd.Font = new Font("Segoe UI", 11.25F);
-            txtAlterarQtd.Location = new Point(28, 131);
+            txtAlterarQtd.Location = new Point(12, 131);
             txtAlterarQtd.Name = "txtAlterarQtd";
             txtAlterarQtd.PlaceholderText = "Ex.: 35";
             txtAlterarQtd.Size = new Size(150, 27);
             txtAlterarQtd.TabIndex = 5;
+            txtAlterarQtd.Visible = false;
             // 
             // label22
             // 
             label22.Anchor = AnchorStyles.Top;
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 11F);
-            label22.Location = new Point(289, 102);
+            label22.Location = new Point(273, 102);
             label22.Name = "label22";
             label22.Size = new Size(156, 20);
             label22.TabIndex = 12;
             label22.Text = "Valor de Venda Médio";
+            label22.Visible = false;
             // 
             // label23
             // 
             label23.Anchor = AnchorStyles.Top;
             label23.AutoSize = true;
             label23.Font = new Font("Segoe UI", 11F);
-            label23.Location = new Point(289, 14);
+            label23.Location = new Point(273, 14);
             label23.Name = "label23";
             label23.Size = new Size(168, 20);
             label23.TabIndex = 13;
             label23.Text = "Valor de Compra Médio";
+            label23.Visible = false;
+            // 
+            // pnlConfirmarAlterar
+            // 
+            pnlConfirmarAlterar.Anchor = AnchorStyles.Top;
+            pnlConfirmarAlterar.Controls.Add(label19);
+            pnlConfirmarAlterar.Controls.Add(btnConfirmarAlteracao);
+            pnlConfirmarAlterar.Controls.Add(txtConfirmarIdAlterar);
+            pnlConfirmarAlterar.Location = new Point(502, 136);
+            pnlConfirmarAlterar.Name = "pnlConfirmarAlterar";
+            pnlConfirmarAlterar.Size = new Size(200, 138);
+            pnlConfirmarAlterar.TabIndex = 18;
+            // 
+            // label19
+            // 
+            label19.Anchor = AnchorStyles.Top;
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 11F);
+            label19.Location = new Point(46, 13);
+            label19.Name = "label19";
+            label19.Size = new Size(106, 20);
+            label19.TabIndex = 14;
+            label19.Text = "Alterar Valores";
+            // 
+            // btnConfirmarAlteracao
+            // 
+            btnConfirmarAlteracao.Anchor = AnchorStyles.Top;
+            btnConfirmarAlteracao.Font = new Font("Segoe UI", 11F);
+            btnConfirmarAlteracao.Location = new Point(60, 97);
+            btnConfirmarAlteracao.Name = "btnConfirmarAlteracao";
+            btnConfirmarAlteracao.Size = new Size(86, 36);
+            btnConfirmarAlteracao.TabIndex = 16;
+            btnConfirmarAlteracao.Text = "Confirmar";
+            btnConfirmarAlteracao.UseVisualStyleBackColor = true;
+            btnConfirmarAlteracao.Click += btnConfirmarAlteracao_Click;
+            // 
+            // txtConfirmarIdAlterar
+            // 
+            txtConfirmarIdAlterar.Anchor = AnchorStyles.Top;
+            txtConfirmarIdAlterar.Font = new Font("Segoe UI", 11.25F);
+            txtConfirmarIdAlterar.Location = new Point(25, 50);
+            txtConfirmarIdAlterar.Name = "txtConfirmarIdAlterar";
+            txtConfirmarIdAlterar.PlaceholderText = "Id do Produto";
+            txtConfirmarIdAlterar.Size = new Size(150, 27);
+            txtConfirmarIdAlterar.TabIndex = 8;
             // 
             // panel5
             // 
             panel5.BackColor = Color.Goldenrod;
+            panel5.Controls.Add(label25);
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
             panel5.Size = new Size(1183, 100);
             panel5.TabIndex = 0;
+            // 
+            // label25
+            // 
+            label25.Anchor = AnchorStyles.Top;
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label25.Location = new Point(502, 24);
+            label25.Name = "label25";
+            label25.Size = new Size(232, 37);
+            label25.TabIndex = 0;
+            label25.Text = "Alterar Produtos";
+            label25.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Produtos
             // 
@@ -983,9 +1118,9 @@ namespace DomApp
             ClientSize = new Size(1183, 607);
             ControlBox = false;
             Controls.Add(pnlAlterar);
+            Controls.Add(pnlBuscarProdutos);
             Controls.Add(pnlCadProduto);
             Controls.Add(pnlDeletar);
-            Controls.Add(pnlBuscarProdutos);
             Controls.Add(pnlVisualizarPdt);
             Controls.Add(pnlNav);
             Name = "Produtos";
@@ -1017,8 +1152,14 @@ namespace DomApp
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             pnlAlterar.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             pnlAtributosAlterar.ResumeLayout(false);
             pnlAtributosAlterar.PerformLayout();
+            pnlConfirmarAlterar.ResumeLayout(false);
+            pnlConfirmarAlterar.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1064,7 +1205,6 @@ namespace DomApp
         private System.Windows.Forms.ComboBox cmbBuscaTipo;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.Button btnPnlDeletar;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Panel pnlDeletar;
         private Label label14;
         private System.Windows.Forms.TextBox txtDeletarId;
@@ -1100,5 +1240,15 @@ namespace DomApp
         private Panel panel5;
         private Panel pnlAtributosAlterar;
         private System.Windows.Forms.Button btnAlterar;
+        private Panel pnlConfirmarAlterar;
+        private Label label19;
+        private System.Windows.Forms.Button btnConfirmarAlteracao;
+        private System.Windows.Forms.TextBox txtConfirmarIdAlterar;
+        private Label label25;
+        private System.Windows.Forms.Button btnPnlAlterar;
+        private Panel panel6;
+        private CheckedListBox clbAlterarProdutos;
+        private Label label26;
+        private System.Windows.Forms.Button btnEnviarAlterar;
     }
 }

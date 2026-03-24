@@ -110,6 +110,7 @@ namespace DomApp
                 pnlCadProduto.Visible = false;
                 pnlBuscarProdutos.Visible = false;
                 pnlVisualizarPdt.Visible = true;
+                pnlAlterar.Visible = false;
                 btnVisualizarPdt.Text = "Esconder Produtos";
 
             }
@@ -130,6 +131,7 @@ namespace DomApp
                 pnlVisualizarPdt.Visible = false;
                 pnlBuscarProdutos.Visible = false;
                 pnlCadProduto.Visible = true;
+                pnlAlterar.Visible = false;
             }
 
             else
@@ -140,15 +142,15 @@ namespace DomApp
 
         private void BuscarProdutos() //Método de buscar produtos no BD.
         {
-            using (MySqlConnection conexaoObj = new MySqlConnection(conexao))
+            using (MySqlConnection conexaoBuscarProdutos = new MySqlConnection(conexao))
             {
                 try
                 {
                     if (txtBuscaId.Text != string.Empty)
                     {
-                        conexaoObj.Open(); //Abre a conexão com o banco de dados.
+                        conexaoBuscarProdutos.Open(); //Abre a conexão com o banco de dados.
                         string query = "Select * From produtos Where id = @id;";
-                        MySqlCommand cmd = new MySqlCommand(query, conexaoObj);
+                        MySqlCommand cmd = new MySqlCommand(query, conexaoBuscarProdutos);
                         cmd.Parameters.AddWithValue("@id", Convert.ToInt32(txtBuscaId.Text));
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -160,9 +162,9 @@ namespace DomApp
 
                     else if (txtBuscaNome.Text != string.Empty)
                     {
-                        conexaoObj.Open(); //Abre a conexão com o banco de dados.
+                        conexaoBuscarProdutos.Open(); //Abre a conexão com o banco de dados.
                         string query = "Select * From produtos Where nome LIKE @nome;"; //Like compara textos
-                        MySqlCommand cmd = new MySqlCommand(query, conexaoObj);
+                        MySqlCommand cmd = new MySqlCommand(query, conexaoBuscarProdutos);
                         cmd.Parameters.AddWithValue("@nome", "%" + txtBuscaNome.Text + "%"); //Jeito de verificar textos.
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -174,9 +176,9 @@ namespace DomApp
 
                     else if (cmbBuscaTipo.Text != string.Empty)
                     {
-                        conexaoObj.Open(); //Abre a conexão com o banco de dados.
+                        conexaoBuscarProdutos.Open(); //Abre a conexão com o banco de dados.
                         string query = "Select * From produtos Where Tipo LIKE @tipo;"; //Like compara textos
-                        MySqlCommand cmd = new MySqlCommand(query, conexaoObj);
+                        MySqlCommand cmd = new MySqlCommand(query, conexaoBuscarProdutos);
                         cmd.Parameters.AddWithValue("@tipo", "%" + cmbBuscaTipo.Text + "%"); //Jeito de verificar textos.
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -189,9 +191,9 @@ namespace DomApp
                     else if (txtBuscaQtdMaiorQue.Text != string.Empty && txtBuscaQtdMenorQue.Text != string.Empty)
                     {
 
-                        conexaoObj.Open(); //Abre a conexão com o banco de dados.
+                        conexaoBuscarProdutos.Open(); //Abre a conexão com o banco de dados.
                         string query = "Select * From produtos WHERE Quantidade BETWEEN @quantidadeMaiorQue AND @quantidadeMenorQue;";
-                        MySqlCommand cmd = new MySqlCommand(query, conexaoObj);
+                        MySqlCommand cmd = new MySqlCommand(query, conexaoBuscarProdutos);
                         cmd.Parameters.AddWithValue("@quantidadeMaiorQue", Convert.ToInt32(txtBuscaQtdMaiorQue.Text));
                         cmd.Parameters.AddWithValue("@quantidadeMenorQue", Convert.ToInt32(txtBuscaQtdMenorQue.Text));
 
@@ -205,9 +207,9 @@ namespace DomApp
 
                     else if (txtBuscaQtdMaiorQue.Text != string.Empty)
                     {
-                        conexaoObj.Open(); //Abre a conexão com o banco de dados.
+                        conexaoBuscarProdutos.Open(); //Abre a conexão com o banco de dados.
                         string query = "Select * From produtos Where Quantidade >= @quantidadeMaiorQue;";
-                        MySqlCommand cmd = new MySqlCommand(query, conexaoObj);
+                        MySqlCommand cmd = new MySqlCommand(query, conexaoBuscarProdutos);
                         cmd.Parameters.AddWithValue("@quantidadeMaiorQue", Convert.ToInt32(txtBuscaQtdMaiorQue.Text));
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -218,9 +220,9 @@ namespace DomApp
                     }
                     else if (txtBuscaQtdMenorQue.Text != string.Empty)
                     {
-                        conexaoObj.Open(); //Abre a conexão com o banco de dados.
+                        conexaoBuscarProdutos.Open(); //Abre a conexão com o banco de dados.
                         string query = "Select * From produtos Where Quantidade <= @quantidadeMenorQue;";
-                        MySqlCommand cmd = new MySqlCommand(query, conexaoObj);
+                        MySqlCommand cmd = new MySqlCommand(query, conexaoBuscarProdutos);
                         cmd.Parameters.AddWithValue("@quantidadeMenorQue", Convert.ToInt32(txtBuscaQtdMenorQue.Text));
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -260,6 +262,7 @@ namespace DomApp
                 pnlBuscarProdutos.Visible = true;
                 pnlCadProduto.Visible = false;
                 pnlVisualizarPdt.Visible = false;
+                pnlAlterar.Visible = false;
             }
         }
 
@@ -289,6 +292,7 @@ namespace DomApp
                 pnlBuscarProdutos.Visible = false;
                 pnlCadProduto.Visible = false;
                 pnlVisualizarPdt.Visible = false;
+                pnlAlterar.Visible = false;
 
             }
 
@@ -321,14 +325,13 @@ namespace DomApp
         {
             RemoverId();
         }
-
         private void btnConfirmarNome_Click(object sender, EventArgs e)//Chama função de Remover pelo Nome
         {
             RemoverNome();
         }
         public void RemoverId()//Remover pelo Id
         {
-            using (MySqlConnection conexaoObj = new MySqlConnection(conexao))
+            using (MySqlConnection conexaoRemoverId = new MySqlConnection(conexao))
             {
                 if (txtDeletarId.Text == txtConfirmarId.Text)
                 {
@@ -336,9 +339,9 @@ namespace DomApp
                     {
                         if (txtDeletarId.Text != string.Empty)
                         {
-                            conexaoObj.Open(); //Abre a conexão com o banco de dados.
+                            conexaoRemoverId.Open(); //Abre a conexão com o banco de dados.
                             string query = "DELETE FROM produtos WHERE id = @id;";
-                            MySqlCommand cmd = new MySqlCommand(query, conexaoObj);
+                            MySqlCommand cmd = new MySqlCommand(query, conexaoRemoverId);
                             cmd.Parameters.AddWithValue("@id", Convert.ToInt32(txtDeletarId.Text));
                             int rowsAffected = cmd.ExecuteNonQuery(); //Executa a query e retorna o número de linhas afetadas.
                             if (rowsAffected > 0)
@@ -370,7 +373,7 @@ namespace DomApp
         }
         public void RemoverNome()//Remover pelo Nome
         {
-            using (MySqlConnection conexaoObj = new MySqlConnection(conexao))
+            using (MySqlConnection conexaoRemoverNome = new MySqlConnection(conexao))
             {
 
                 if (txtConfirmarNome.Text == txtDeletarNome.Text)
@@ -379,9 +382,9 @@ namespace DomApp
                     {
                         if (txtDeletarNome.Text != string.Empty)
                         {
-                            conexaoObj.Open(); //Abre a conexão com o banco de dados.
+                            conexaoRemoverNome.Open(); //Abre a conexão com o banco de dados.
                             string query = "DELETE FROM produtos WHERE nome = @nome;";
-                            MySqlCommand cmd = new MySqlCommand(query, conexaoObj);
+                            MySqlCommand cmd = new MySqlCommand(query, conexaoRemoverNome);
                             cmd.Parameters.AddWithValue("@nome", txtDeletarNome.Text);
                             int rowsAffected = cmd.ExecuteNonQuery(); //Executa a query e retorna o número de linhas afetadas.
                             if (rowsAffected > 0)
@@ -428,15 +431,139 @@ namespace DomApp
         {
             pnlConfirmarId.Visible = false;
         }
-
-        private void Alterar()
+        private void btnPnlAlterar_Click(object sender, EventArgs e)
         {
+            if (pnlAlterar.Visible == false)
+            {
+                pnlDeletar.Visible = false;
+                pnlBuscarProdutos.Visible = false;
+                pnlCadProduto.Visible = false;
+                pnlVisualizarPdt.Visible = false;
+                pnlAlterar.Visible = true;
+            }
+            else
+            {
+                pnlAlterar.Visible = false;
+            }
+        }
+        private void btnConfirmarAlteracao_Click(object sender, EventArgs e)
+        {
+            if (txtConfirmarIdAlterar.Text != string.Empty)
+            {
+                try
+                {
+                    using (MySqlConnection conn = new MySqlConnection(conexao)) //Cria variavel para abrir conexão com o BD
+                    {
+                        conn.Open(); // Abre a conexão com o banco de dados
+                        string queryId = "SELECT * FROM produtos WHERE id = @id"; //Armazena a query, só para passar o @id como parâmetro
+
+                        using (MySqlCommand cmdAlterar = new MySqlCommand(queryId, conn))
+                        {
+                            cmdAlterar.Parameters.AddWithValue("@id", Convert.ToInt32(txtConfirmarIdAlterar.Text)); //parâmetro recebe oque foi digitado.
+                            object resultado = cmdAlterar.ExecuteScalar(); //Se existir no BD, retorna o valor do Id, se não existir, retorna null.
+
+                            if (resultado != null) //poderia ser resultado == txtConfirmarIdAlterar.Text
+                            {
+                                panel6.Visible = true;
+                                pnlConfirmarAlterar.Visible = false;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Id digitado para alteração não existe no banco de dados.");
+                            }
+
+                        }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao confirmar Id ou para alterar o Id" + ex.Message);
+                }
+
+            }
 
         }
 
-        private void btnConfirmarId_Click(object sender, EventArgs e)
+        private void btnAlterar_Click(object sender, EventArgs e)
         {
-            pnlConfirmarId.Visible = true;
+            Alterar();
+        }
+
+        private void Alterar()
+        {
+            using (MySqlConnection conexaoAlterar = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conexaoAlterar.Open(); //Abre a conexão com o banco de dados.
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao abrir conexão com o banco de dados: {ex.Message}");
+                }
+            }
+        }
+
+        private void btnEnviarAlterar_Click(object sender, EventArgs e)
+        {
+            pnlAtributosAlterar.Visible = true;
+            foreach (var item in clbAlterarProdutos.CheckedItems) //item recebe o valor de cada check selecionado
+            {
+                switch (item.ToString())
+                {
+                    case "Nome":
+                        txtAlterarNome.Visible = true;
+                        label24.Visible = true;
+                        break;
+                    case "Valor de Compra":
+                        txtAlterarValorCompra.Visible = true;
+                        label23.Visible = true;
+                        break;
+                    case "Valor de Venda":
+                        label22.Visible = true;
+                        txtAlterarValorVenda.Visible = true;
+                        break;
+                    case "Quantidade em Estoque":
+                        label20.Visible = true;
+                        txtAlterarQtd.Visible = true;
+                        break;
+                    case "Tipo":
+                        cmbAlterarTipo.Visible = true;
+                        label21.Visible = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (!clbAlterarProdutos.GetItemChecked(0))
+            {
+                txtAlterarNome.Visible = false;
+                label24.Visible = false;
+            }
+            else if (!clbAlterarProdutos.GetItemChecked(1))
+            {                
+                label20.Visible = false;
+                txtAlterarQtd.Visible = false;
+            }
+            else if (!clbAlterarProdutos.GetItemChecked(2))
+            {
+                cmbAlterarTipo.Visible = false;
+                label21.Visible = false;
+            }
+            else if (!clbAlterarProdutos.GetItemChecked(3))
+            {
+                txtAlterarValorCompra.Visible = false;
+                label23.Visible = false;
+            }
+            else if (!clbAlterarProdutos.GetItemChecked(4))
+            {
+                label22.Visible = false;
+                txtAlterarValorVenda.Visible = false;
+            }
+   
         }
     }
 }
