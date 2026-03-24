@@ -856,6 +856,7 @@ namespace DomApp
             panel6.Name = "panel6";
             panel6.Size = new Size(282, 198);
             panel6.TabIndex = 19;
+            panel6.Visible = false;
             // 
             // btnEnviarAlterar
             // 
@@ -934,7 +935,6 @@ namespace DomApp
             btnAlterar.TabIndex = 16;
             btnAlterar.Text = "Alterar";
             btnAlterar.UseVisualStyleBackColor = true;
-            btnAlterar.Visible = false;
             btnAlterar.Click += btnAlterar_Click;
             // 
             // txtAlterarNome

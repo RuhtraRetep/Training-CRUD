@@ -28,7 +28,6 @@ namespace DomApp
             InitializeComponent();
             lblLogin.Text = $"Bem Vindo {loginParametro}";
         }
-
         private void CadProdutos() //Cadastro de produtos no BD
         {
 
@@ -74,12 +73,10 @@ namespace DomApp
             }
 
         }
-
         private void btnCadastrar_Click(object sender, EventArgs e) //Chama CadProdutos().
         {
             CadProdutos();
         }
-
         private void VisualizarProdutos()
         {
 
@@ -116,12 +113,10 @@ namespace DomApp
             }
 
         }
-
         private void btnVisualizarPdt_Click_2(object sender, EventArgs e) //Abre Pnl de Visualizar produtos e chama VisualizarProdutos().
         {
             VisualizarProdutos();
         }
-
         private void btnCadastrarProdutos_Click(object sender, EventArgs e) //Abre Pnl de cadastro de produtos.
         {
 
@@ -139,7 +134,6 @@ namespace DomApp
                 pnlCadProduto.Visible = false;
             }
         }
-
         private void BuscarProdutos() //Método de buscar produtos no BD.
         {
             using (MySqlConnection conexaoBuscarProdutos = new MySqlConnection(conexao))
@@ -248,7 +242,6 @@ namespace DomApp
 
 
         }
-
         private void btnBuscarProdutos_Click(object sender, EventArgs e)//Abre Pnl de Buscar Produtos
         {
             if (pnlBuscarProdutos.Visible == true)
@@ -265,7 +258,6 @@ namespace DomApp
                 pnlAlterar.Visible = false;
             }
         }
-
         private void btnBuscar_Click(object sender, EventArgs e)//Chama BuscarProdutos() 
         {
             if (cmbBuscaTipo.Text == "" && txtBuscaId.Text == "" && txtBuscaNome.Text == ""
@@ -279,7 +271,6 @@ namespace DomApp
             }
 
         }
-
         private void btnPnlDeletar_Click(object sender, EventArgs e) //Abre Pnl de Deletar Produtos
         {
             if (pnlDeletar.Visible == true)
@@ -297,7 +288,6 @@ namespace DomApp
             }
 
         }
-
         private void btnDeletar_Click(object sender, EventArgs e)//Abre Pnl de Confirmar deleção, seja de Nome ou Id
         {
             if (txtDeletarId.Text == string.Empty && txtDeletarNome.Text == string.Empty)
@@ -320,7 +310,6 @@ namespace DomApp
             }
 
         }
-
         private void btnConfirmar_Click(object sender, EventArgs e)//Chama função de Remover pelo Id
         {
             RemoverId();
@@ -414,19 +403,16 @@ namespace DomApp
             }
             pnlConfirmarNome.Visible = false;
         }
-
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Login fl = new Login();
             this.Hide();
             fl.Show();
         }
-
         private void btnSairConfirmarNome_Click(object sender, EventArgs e)
         {
             pnlConfirmarNome.Visible = false;
         }
-
         private void btnSairConfirmarId_Click(object sender, EventArgs e)
         {
             pnlConfirmarId.Visible = false;
@@ -447,6 +433,11 @@ namespace DomApp
             }
         }
         private void btnConfirmarAlteracao_Click(object sender, EventArgs e)
+        {
+            ConfirmarAlteracao();
+
+        }
+        private void ConfirmarAlteracao()
         {
             if (txtConfirmarIdAlterar.Text != string.Empty)
             {
@@ -482,12 +473,76 @@ namespace DomApp
                 }
 
             }
-
         }
-
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            Alterar();
+            panel6.Visible = false;
+            pnlAtributosAlterar.Visible = false;
+        }
+        private void btnEnviarAlterar_Click(object sender, EventArgs e)
+        {
+            VerificarCheckedList();
+        }
+        private void VerificarCheckedList()
+        {
+            if (clbAlterarProdutos.CheckedItems.Count == 0) //Testa se ao menos uma opção foi escolhida
+            {
+                MessageBox.Show("Selecione ao menos um atributo para alterar.");
+                return;
+            }
+
+            pnlAtributosAlterar.Visible = true;
+
+            if (!clbAlterarProdutos.GetItemChecked(0))
+            {
+                txtAlterarNome.Visible = false;
+                label24.Visible = false;
+            }
+            else
+            {
+                txtAlterarNome.Visible = true;
+                label24.Visible = true;
+            }
+            if (!clbAlterarProdutos.GetItemChecked(1))
+            {
+                label20.Visible = false;
+                txtAlterarQtd.Visible = false;
+            }
+            else
+            {
+                label20.Visible = true;
+                txtAlterarQtd.Visible = true;
+            }
+            if (!clbAlterarProdutos.GetItemChecked(2))
+            {
+                cmbAlterarTipo.Visible = false;
+                label21.Visible = false;
+            }
+            else
+            {
+                cmbAlterarTipo.Visible = true;
+                label21.Visible = true;
+            }
+            if (!clbAlterarProdutos.GetItemChecked(3))
+            {
+                txtAlterarValorCompra.Visible = false;
+                label23.Visible = false;
+            }
+            else
+            {
+                txtAlterarValorCompra.Visible = true;
+                label23.Visible = true;
+            }
+            if (!clbAlterarProdutos.GetItemChecked(4))
+            {
+                label22.Visible = false;
+                txtAlterarValorVenda.Visible = false;
+            }
+            else
+            {
+                label22.Visible = true;
+                txtAlterarValorVenda.Visible = true;
+            }
         }
 
         private void Alterar()
@@ -504,66 +559,6 @@ namespace DomApp
                     MessageBox.Show($"Erro ao abrir conexão com o banco de dados: {ex.Message}");
                 }
             }
-        }
-
-        private void btnEnviarAlterar_Click(object sender, EventArgs e)
-        {
-            pnlAtributosAlterar.Visible = true;
-            foreach (var item in clbAlterarProdutos.CheckedItems) //item recebe o valor de cada check selecionado
-            {
-                switch (item.ToString())
-                {
-                    case "Nome":
-                        txtAlterarNome.Visible = true;
-                        label24.Visible = true;
-                        break;
-                    case "Valor de Compra":
-                        txtAlterarValorCompra.Visible = true;
-                        label23.Visible = true;
-                        break;
-                    case "Valor de Venda":
-                        label22.Visible = true;
-                        txtAlterarValorVenda.Visible = true;
-                        break;
-                    case "Quantidade em Estoque":
-                        label20.Visible = true;
-                        txtAlterarQtd.Visible = true;
-                        break;
-                    case "Tipo":
-                        cmbAlterarTipo.Visible = true;
-                        label21.Visible = true;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            if (!clbAlterarProdutos.GetItemChecked(0))
-            {
-                txtAlterarNome.Visible = false;
-                label24.Visible = false;
-            }
-            else if (!clbAlterarProdutos.GetItemChecked(1))
-            {                
-                label20.Visible = false;
-                txtAlterarQtd.Visible = false;
-            }
-            else if (!clbAlterarProdutos.GetItemChecked(2))
-            {
-                cmbAlterarTipo.Visible = false;
-                label21.Visible = false;
-            }
-            else if (!clbAlterarProdutos.GetItemChecked(3))
-            {
-                txtAlterarValorCompra.Visible = false;
-                label23.Visible = false;
-            }
-            else if (!clbAlterarProdutos.GetItemChecked(4))
-            {
-                label22.Visible = false;
-                txtAlterarValorVenda.Visible = false;
-            }
-   
         }
     }
 }
